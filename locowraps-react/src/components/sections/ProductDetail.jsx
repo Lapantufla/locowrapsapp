@@ -126,6 +126,7 @@ export const ProductDetail = () => {
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)} 
         productName={product.name} 
+        productImage={`${import.meta.env.BASE_URL}${product.image}`}
       />
     </div>
   );

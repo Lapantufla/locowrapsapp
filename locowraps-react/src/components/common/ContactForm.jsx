@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Check } from 'lucide-react';
 import './ContactForm.css';
 
-export const ContactForm = ({ isOpen, onClose, productName }) => {
+export const ContactForm = ({ isOpen, onClose, productName, productImage }) => {
   const [isSent, setIsSent] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -29,11 +29,41 @@ export const ContactForm = ({ isOpen, onClose, productName }) => {
     setTimeout(() => {
       onClose();
       setIsSent(false);
-    }, 3000);
+    }, 3500);
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 30 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      } 
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.95, 
+      y: 20,
+      transition: { duration: 0.4 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
   };
 
   return (
@@ -48,23 +78,34 @@ export const ContactForm = ({ isOpen, onClose, productName }) => {
         >
           <motion.div 
             className="form-container"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            onClick={(e) => e.stopPropagation()} // Evita que el click en el form cierre el modal
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            onClick={(e) => e.stopPropagation()}
           >
-            <button className="close-btn" onClick={onClose}>
-              <X size={24} />
+            <button className="close-btn" onClick={onClose} aria-label="Cerrar">
+              <X size={20} />
             </button>
 
             {!isSent ? (
               <div className="form-content">
-                <h2 className="form-title">Consultar Pieza</h2>
-                <p className="form-subtitle">Inicia una conversación sobre esta joya exclusiva.</p>
+                <motion.div className="form-header" variants={itemVariants}>
+                  <div className="product-context">
+                    {productImage && (
+                      <div className="product-thumb">
+                        <img src={productImage} alt={productName} />
+                      </div>
+                    )}
+                    <div className="header-text">
+                      <h2 className="form-title">Consultar Pieza</h2>
+                      <p className="form-subtitle">Interés en: {productName}</p>
+                    </div>
+                  </div>
+                </motion.div>
                 
                 <form onSubmit={handleSubmit} className="inquiry-form">
-                  <div className="form-group">
+                  <motion.div className="form-group" variants={itemVariants}>
                     <label htmlFor="name">Nombre</label>
                     <input 
                       type="text" 
@@ -73,10 +114,10 @@ export const ContactForm = ({ isOpen, onClose, productName }) => {
                       required 
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Tu nombre"
+                      placeholder="Tu nombre completo"
                     />
-                  </div>
-                  <div className="form-group">
+                  </motion.div>
+                  <motion.div className="form-group" variants={itemVariants}>
                     <label htmlFor="email">Email</label>
                     <input 
                       type="email" 
@@ -87,36 +128,50 @@ export const ContactForm = ({ isOpen, onClose, productName }) => {
                       onChange={handleChange}
                       placeholder="tu@email.com"
                     />
-                  </div>
-                  <div className="form-group">
+                  </motion.div>
+                  <motion.div className="form-group" variants={itemVariants}>
                     <label htmlFor="message">Mensaje</label>
                     <textarea 
                       id="message" 
                       name="message" 
-                      rows="4" 
+                      rows="3" 
                       required
                       value={formData.message}
                       onChange={handleChange}
                     ></textarea>
-                  </div>
+                  </motion.div>
                   
-                  <button type="submit" className="submit-btn" id="submit-inquiry">
+                  <motion.button 
+                    type="submit" 
+                    className="submit-btn" 
+                    id="submit-inquiry"
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <span>Enviar Consulta</span>
-                    <Send size={18} />
-                  </button>
+                    <Send size={16} />
+                  </motion.button>
                 </form>
               </div>
             ) : (
               <motion.div 
                 className="success-message"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="success-icon">
-                  <Check size={48} />
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", damping: 12, stiffness: 200, delay: 0.2 }}
+                  >
+                    <Check size={64} />
+                  </motion.div>
                 </div>
-                <h3>Mensaje Enviado</h3>
-                <p>Lisandro recibirá tu consulta en breve y se pondrá en contacto contigo.</p>
+                <h3 className="success-title">Mensaje Enviado</h3>
+                <p>Lisandro recibirá tu consulta en breve. Te contactaremos pronto para conversar sobre esta pieza única.</p>
               </motion.div>
             )}
           </motion.div>
