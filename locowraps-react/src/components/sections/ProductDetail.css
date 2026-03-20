@@ -124,7 +124,8 @@
   font-size: 1.1rem;
   line-height: 1.8;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-text);
+  opacity: 0.9;
 }
 
 /* --- SECCIONES ADICIONALES --- */
@@ -166,9 +167,10 @@
 }
 
 .process-text {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   font-weight: 300;
+  color: var(--color-text);
   opacity: 0.8;
 }
 

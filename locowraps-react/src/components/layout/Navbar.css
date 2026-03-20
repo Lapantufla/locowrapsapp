@@ -28,6 +28,31 @@
   }
 }
 
+/* --- MODO SPLIT (Para detalles de producto) --- */
+.navbar.nav-split {
+  background-color: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.navbar.nav-split .nav-brand a {
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.navbar.nav-split .nav-links a {
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  /* En tablets/móvil mantenemos el estilo coherente */
+  .navbar.nav-split:not(.scrolled) {
+    background-color: rgba(0, 0, 0, 0.5); /* Un poco más oscuro en móvil para asegurar legibilidad */
+  }
+}
+
 .nav-brand {
   font-family: var(--font-heading);
   font-size: 1.5rem;

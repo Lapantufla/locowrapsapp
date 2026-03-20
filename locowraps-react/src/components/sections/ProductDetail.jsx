@@ -44,8 +44,6 @@ export const ProductDetail = () => {
 
   return (
     <div className="product-detail-page">
-      <Navbar />
-      
       <main className="detail-main">
         <div className="split-layout">
           {/* LADO IZQUIERDO: IMAGEN STICKY */}
@@ -129,7 +127,6 @@ export const ProductDetail = () => {
         onClose={() => setIsFormOpen(false)} 
         productName={product.name} 
       />
-      <Footer />
     </div>
   );
 };

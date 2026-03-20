@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 export const Navbar = () => {
+  const location = useLocation();
   const [scrolled, setScrolled] = React.useState(false);
+  const isSplit = location.pathname.includes('/producto/');
 
   React.useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -32,7 +34,7 @@ export const Navbar = () => {
 
   return (
     <motion.nav 
-      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      className={`navbar ${scrolled ? 'scrolled' : ''} ${isSplit ? 'nav-split' : ''}`}
       initial="hidden"
       animate="visible"
       variants={navVariants}
