@@ -11,7 +11,7 @@ export const Bespoke = () => {
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          src="/images/bespoke-photo.jpg" 
+          src={`${import.meta.env.BASE_URL}images/bespoke-photo.jpg`}
           alt="Joyería a medida Locowraps" 
         />
       </div>

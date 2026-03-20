@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 import './Hero.css';
 
 export const Hero = () => {
@@ -10,8 +10,7 @@ export const Hero = () => {
       <div className="hero-image-container">
         <motion.img 
           style={{ y }}
-          src="/images/hero-rings-hand.jpg" 
-          alt="Anillos de Locowraps en la mano" 
+          src={`${import.meta.env.BASE_URL}images/hero-rings-hand.jpg`}          alt="Anillos de Locowraps en la mano" 
           className="hero-bg"
         />
         <div className="hero-overlay"></div>

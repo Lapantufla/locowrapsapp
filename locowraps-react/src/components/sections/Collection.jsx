@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { products } from '../../data/products';
 import './Collection.css';
@@ -33,9 +32,9 @@ export const Collection = () => {
                 transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="product-image-wrapper">
-                  <img src={product.image} alt={product.name} className="primary-img" loading="lazy" />
+                  <img src={`${import.meta.env.BASE_URL}${product.image}`} alt={product.name} className="primary-img" loading="lazy" />
                   <motion.img 
-                    src={product.hoverImage} 
+                    src={`${import.meta.env.BASE_URL}${product.hoverImage}`} 
                     alt={`${product.name} (detalle)`} 
                     className="secondary-img"
                     initial={{ opacity: 0 }}

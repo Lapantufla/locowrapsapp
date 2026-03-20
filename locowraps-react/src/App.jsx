@@ -19,7 +19,7 @@ const Home = () => (
 
 function App() {
   return (
-    <Router>
+    <Router basename="/locowrapsapp">
       <ScrollToTop />
       <Navbar />
       <main>

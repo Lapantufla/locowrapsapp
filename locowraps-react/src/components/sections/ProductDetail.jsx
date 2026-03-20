@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { products } from '../../data/products';
 import { Navbar } from '../layout/Navbar';
 import { Footer } from '../layout/Footer';
@@ -31,7 +30,7 @@ export const ProductDetail = () => {
       
       <div className="detail-hero">
         <div className="detail-bg">
-          <img src={product.image} alt="" />
+          <img src={`${import.meta.env.BASE_URL}${product.image}`} alt="" />
           <div className="detail-overlay"></div>
         </div>
         
