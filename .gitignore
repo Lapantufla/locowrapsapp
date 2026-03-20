@@ -38,3 +38,4 @@ pnpm-debug.log*
 # Project specific
 locowraps-react/node_modules/
 locowraps-react/dist/
+agents/
