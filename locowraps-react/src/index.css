@@ -1,0 +1,140 @@
+/* 
+  LOCOWRAPS REACT CSS (Global styles)
+  Tema: Raw Luxury / Minimalismo Cálido 
+*/
+
+:root {
+  /* Paleta Extraída del manual de colores.png */
+  --color-bg: #fffcf5; /* De la paleta extraída */
+  --color-text: #2d312e; /* Mantenemos un carbón oscuro para legibilidad (el negro casi puro) */
+  --color-accent: #005256; /* Teal extraído de la paleta */
+  --color-accent-light: rgba(0, 82, 86, 0.1);
+  --color-secondary: #cd714a; /* Naranja/Cobre quemado de la paleta */
+  --color-muted: #f3f1e7; /* Beige cálido de la paleta */
+  --color-light-muted: #fffbf4; /* Crema muy claro de la paleta */
+  
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', sans-serif;
+  
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  --transition-slow: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.3s ease;
+}
+
+/* Reset baseline */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg); /* O #fffbf4 */
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typografía general */
+h1, h2, h3, h4, h5, .title-serif {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.section-padding {
+  padding: var(--space-xl) 0;
+}
+
+.text-center { text-align: center; }
+
+/* Utils */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-bg);
+  color: var(--color-bg);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.link-underline {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-text);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.link-underline:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Estilo ghost para botones secundarios en fondos oscuros/claros */
+.btn-ghost {
+  background-color: transparent;
+  border-color: rgba(45, 49, 46, 0.4);
+  color: var(--color-text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* CTA container (hero) */
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

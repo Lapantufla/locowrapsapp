@@ -1,0 +1,55 @@
+.bespoke-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: var(--color-accent); /* Fondo azul/verde petróleo profundo (Teal) */
+  color: var(--color-bg);
+  overflow: hidden; /* Evita desborde de imagen animada */
+}
+
+@media(min-width: 900px) {
+  .bespoke-section {
+      grid-template-columns: 1fr 1fr;
+  }
+}
+
+.bespoke-image {
+  overflow: hidden;
+}
+
+.bespoke-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  min-height: 50vh;
+}
+
+.bespoke-content {
+  padding: var(--space-lg) 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-light-muted);
+  margin-bottom: 1rem;
+}
+
+.bespoke-content .title-serif {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  color: var(--color-bg);
+  margin-bottom: 1.5rem;
+}
+
+.body-text {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  color: var(--color-bg);
+  opacity: 0.9;
+  max-width: 500px;
+}

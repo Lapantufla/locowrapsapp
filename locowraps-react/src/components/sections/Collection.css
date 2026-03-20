@@ -1,0 +1,120 @@
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(45, 49, 46, 0.1);
+  padding-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+}
+
+.grid-collection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media(min-width: 768px) {
+  .grid-collection {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      align-items: start;
+  }
+  
+  /* Efecto orgánico y fluido: la columna del medio baja */
+  .product-card:nth-child(3n+2) {
+      margin-top: var(--space-xl);
+  }
+}
+
+.product-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-light-muted);
+  aspect-ratio: 4 / 5; /* Formato retrato más elegante y "editorial" */
+  margin-bottom: 1.5rem;
+  border-radius: 4px; /* Un toque menos rígido (esquinas suavizadas) */
+}
+
+.product-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+/* La imagen principal recibe zoom en el hover principal de la tarjeta*/
+.product-card:hover .primary-img {
+  transform: scale(1.05);
+}
+
+/* La secundaria la hacemos interactiva por motion, también escala con la tarjeta */
+.product-card:hover .secondary-img {
+  transform: scale(1.05);
+}
+
+.product-card {
+  transition: box-shadow var(--transition-slow);
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-accent); /* Tintando los textos del badge al Teal */
+  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.badge.sold-out {
+  background-color: var(--color-accent); /* Usando Teal en vez de carbón para vendidos */
+  color: var(--color-bg);
+}
+
+.product-name {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+  color: var(--color-text);
+}
+
+.product-material {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.product-info {
+  margin-top: 1rem;
+}
+
+.view-detail {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .view-detail {
+  opacity: 1;
+  color: var(--color-accent);
+}
+

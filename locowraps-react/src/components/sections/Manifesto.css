@@ -1,0 +1,19 @@
+.manifesto {
+  background-color: var(--color-bg);
+}
+
+.manifesto-text {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.manifesto-author {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
