@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { products } from '../../data/products';
 import { Navbar } from '../layout/Navbar';
 import { Footer } from '../layout/Footer';
