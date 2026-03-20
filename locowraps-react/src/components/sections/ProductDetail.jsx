@@ -25,64 +25,110 @@ export const ProductDetail = () => {
     );
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
+
   return (
     <div className="product-detail-page">
       <Navbar />
       
-      <div className="detail-hero">
-        <div className="detail-bg">
-          <img src={`${import.meta.env.BASE_URL}${product.image}`} alt="" />
-          <div className="detail-overlay"></div>
-        </div>
-        
-        <motion.div 
-          className="detail-content"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="container">
-            <div className="detail-text-wrapper">
-              <motion.span 
-                className="detail-tag"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                {product.tag}
-              </motion.span>
-              <h1 className="detail-title">{product.name}</h1>
-              <p className="detail-material">{product.material}</p>
-              <div className="detail-divider"></div>
-              <p className="detail-description">{product.description}</p>
-              
-              {!product.sold ? (
-                <motion.button 
-                  onClick={() => setIsFormOpen(true)}
-                  className="btn btn-primary"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Consultar Disponibilidad
-                </motion.button>
-              ) : (
-                <span className="sold-out-text">Esta pieza ya forma parte de una colección privada</span>
+      <main className="detail-main">
+        <div className="split-layout">
+          {/* LADO IZQUIERDO: IMAGEN STICKY */}
+          <div className="detail-visual">
+            <motion.div 
+              className="image-container"
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img src={`${import.meta.env.BASE_URL}${product.image}`} alt={product.name} />
+              <div className="detail-vignette"></div>
+            </motion.div>
+          </div>
+
+          {/* LADO DERECHO: CONTENIDO SCROLLABLE */}
+          <div className="detail-info">
+            <motion.div 
+              className="info-scroll-content"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <section className="info-hero-section">
+                <motion.span className="detail-tag" variants={itemVariants}>{product.tag}</motion.span>
+                <motion.h1 className="detail-title" variants={itemVariants}>{product.name}</motion.h1>
+                <motion.p className="detail-material" variants={itemVariants}>{product.material}</motion.p>
+                <motion.div className="detail-divider" variants={itemVariants}></motion.div>
+                <motion.p className="detail-description" variants={itemVariants}>{product.description}</motion.p>
+              </section>
+
+              {product.specs && (
+                <motion.section className="info-section specs-section" variants={itemVariants}>
+                  <h3 className="section-subtitle">Especificaciones</h3>
+                  <div className="specs-grid">
+                    {Object.entries(product.specs).map(([key, value]) => (
+                      <div key={key} className="spec-item">
+                        <span className="spec-label">{key}</span>
+                        <span className="spec-value">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
               )}
 
-              <div className="btn-back-wrapper">
-                <Link to="/#coleccion" className="link-back">Volver al archivo</Link>
-              </div>
-            </div>
+              {product.process && (
+                <motion.section className="info-section process-section" variants={itemVariants}>
+                  <h3 className="section-subtitle">El Proceso</h3>
+                  <p className="process-text">{product.process}</p>
+                </motion.section>
+              )}
+
+              <motion.section className="info-actions" variants={itemVariants}>
+                {!product.sold ? (
+                  <button 
+                    onClick={() => setIsFormOpen(true)}
+                    className="btn btn-primary full-width"
+                  >
+                    Consultar Disponibilidad
+                  </button>
+                ) : (
+                  <div className="sold-status">
+                    <span className="sold-dot"></span>
+                    <span className="sold-out-text">Pieza de Colección Privada</span>
+                  </div>
+                )}
+                
+                <div className="btn-back-wrapper">
+                  <Link to="/#coleccion" className="link-back">
+                    <span className="arrow">←</span> Volver al archivo
+                  </Link>
+                </div>
+              </motion.section>
+            </motion.div>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </main>
 
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)} 
         productName={product.name} 
       />
-
       <Footer />
     </div>
   );
